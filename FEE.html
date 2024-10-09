@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .brand {
+            font-size: 24px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .search-container select {
+            padding: 5px;
+        }
+        .movie-collections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .movie {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 30%;
+            margin: 10px;
+            text-align: center;
+        }
+        .movie h2 {
+            font-size: 20px;
+        }
+        .rating {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .movie img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="brand">Movie Collections</div>
+        <div class="search-container">
+            <input type="text" placeholder="Search movies...">
+            <select id="ratingFilter">
+                <option value="">Select Rating</option>
+                <option value="5">5 Star</option>
+                <option value="4">4 Star</option>
+                <option value="3">3 Star</option>
+                <option value="2">2 Star</option>
+                <option value="1">1 Star</option>
+            </select>
+        </div>
+    </nav>
+
+
+    <div class="movie-collections">
+        <div class="movie">
+            <h2>Avengers</h2>
+            <img src="https://cdn.marvel.com/content/1x/avengersendgame_lob_crd_05.jpg" alt="Avengers Endgame" style="width: 100%; height: auto; border-radius: 5px;">
+            <p class="rating">Rating: <span class="movie-rating" id="rating1"></span>/5</p>
+        </div>
+        <div class="movie">
+            <h2>Lord of the rings</h2>
+            <img src="https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_.jpg" alt="Movie Poster 2" style="width: 100%; height: auto; border-radius: 5px;">
+            <p class="rating">Rating: <span class="movie-rating" id="rating2"></span>/5</p>
+        </div>
+        <div class="movie">
+            <h2>Dune</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHFdKTESKUIALnpjfFsZNCyUg2om0wplZ-8g&s" alt="Movie Poster 3" style="width: 100%; height: auto; border-radius: 5px;">
+            <p class="rating">Rating: <span class="movie-rating" id="rating3"></span>/5</p>
+        </div>
+        <div class="movie">
+            <h2>From - Series</h2>
+            <img src="https://images.justwatch.com/poster/304461294/s332/from" alt="Movie Poster 4" style="width: 100%; height: auto; border-radius: 5px;">
+            <p class="rating">Rating: <span class="movie-rating" id="rating4"></span>/5</p>
+        </div>
+        <div class="movie">
+            <h2>Squid Games</h2>
+            <img src="https://kollersi.com/wp-content/uploads/2023/11/mv5bngflotbhmzytymu5oc00oge2lwjknzatyzljotk4zjjlzjg2xkeyxkfqcgdeqxvymtkxnjuynq-_v1_fmjpg_ux1000_.jpg" alt="Squid Game Image">
+
+            <p class="rating">Rating: <span class="movie-rating" id="rating5"></span>/5</p>
+        </div>
+        <div class="movie">
+            <h2>Spider Man</h2>
+            <img src="https://m.media-amazon.com/images/M/MV5BZWM0OWVmNTEtNWVkOS00MzgyLTkyMzgtMmE2ZTZiNjY4MmFiXkEyXkFqcGc@._V1_.jpg" alt="Spider-Man Image">
+
+            <p class="rating">Rating: <span class="movie-rating" id="rating6"></span>/5</p>
+        </div>
+    </div>
+
+    <script>
+        
+        function getRandomRating() {
+            return Math.floor(Math.random() * 5) + 1;
+        }
+        for (let i = 1; i <= 6; i++) {
+            document.getElementById(`rating${i}`).innerText = getRandomRating();
+        }
+        document.getElementById('ratingFilter').addEventListener('change', function() {
+            let selectedRating = this.value;
+            let movies = document.querySelectorAll('.movie');
+            
+            movies.forEach(movie => {
+                let movieRating = movie.querySelector('.movie-rating').innerText;
+                if (selectedRating === "" || movieRating === selectedRating) {
+                    movie.style.display = "block";
+                } else {
+                    movie.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
